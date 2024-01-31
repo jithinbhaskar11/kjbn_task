@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   int randomNumContainerText = 00;
   int clickAttempts=0;
   int timerFailures=0;
+  int score=0;
 
   int getRandomNumber() {
     return random.nextInt(60);
@@ -80,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                   randomNumContainerText==DateTime.timestamp().second? Text('Success:)',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),):
                       Text('Sorry try again',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
                   Divider(height: 30,),
-                  randomNumContainerText==DateTime.timestamp().second? Text('Score',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),):
+                  randomNumContainerText==DateTime.timestamp().second? Text('Score : ${score}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),):
                       Text('Attempts : ${clickAttempts}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white))
 
                 ],
@@ -109,6 +110,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(height: 20,),
             ElevatedButton(onPressed: (){
               timeController.start();
+              if(randomNumContainerText==DateTime.timestamp().second){
+                score++;
+              }
               int randomNumber = getRandomNumber();
               setState(() {
                 randomNumContainerText = randomNumber;
