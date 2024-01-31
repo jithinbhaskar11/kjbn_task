@@ -26,7 +26,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Title'),),
+      appBar: AppBar(title: Text('TIME pass'),
+      centerTitle: true,
+        backgroundColor: Colors.green,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -41,13 +44,14 @@ class _HomePageState extends State<HomePage> {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black),
                     borderRadius: BorderRadius.circular(15),
-                    color: Colors.blue[50]
+                    color: Colors.blue[50],
+                      boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2),offset: Offset(5, 2))]
                   ),
                   child: Column(
                     children: [
-                      Text('Current Second'),
+                      Text('Current Second',style: TextStyle(fontWeight: FontWeight.bold),),
                       Divider(height: 30,),
-                      Text(DateTime.timestamp().second.toString())
+                      Text(DateTime.timestamp().second.toString(),style: TextStyle(fontWeight: FontWeight.bold),)
                     ],
                   ),
                 ),
@@ -56,13 +60,14 @@ class _HomePageState extends State<HomePage> {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black),
                       borderRadius: BorderRadius.circular(15),
-                      color: Colors.red[300]
+                      color: Colors.red[300],
+                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2),offset: Offset(5, 2))]
                   ),
                   child: Column(
                     children: [
-                      Text('Random Number'),
+                      Text('Random Number',style: TextStyle(fontWeight: FontWeight.bold),),
                       Divider(height: 30,),
-                      Text(randomNumContainerText.toString())
+                      Text(randomNumContainerText.toString(),style: TextStyle(fontWeight: FontWeight.bold),)
                     ],
                   ),
                 ),
@@ -74,7 +79,8 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 border: Border.all(),
                 borderRadius: BorderRadius.circular(15),
-                color: randomNumContainerText==DateTime.timestamp().second? Colors.green : Colors.amber
+                color: randomNumContainerText==DateTime.timestamp().second? Colors.green : Colors.amber,
+                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.2),offset: Offset(5, 2))]
               ),
               child: Column(
                 children: [
@@ -108,7 +114,7 @@ class _HomePageState extends State<HomePage> {
             },
             ),
             SizedBox(height: 20,),
-            ElevatedButton(onPressed: (){
+            MaterialButton(onPressed: (){
               timeController.start();
               if(randomNumContainerText==DateTime.timestamp().second){
                 score++;
@@ -119,7 +125,8 @@ class _HomePageState extends State<HomePage> {
                 clickAttempts++;
                 print('clicks= ${clickAttempts}');
               });
-            }, child: Text('Click'),style: ElevatedButton.styleFrom(maximumSize: Size(250, 100)),)
+            }, child: Text('Click',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+            shape: StadiumBorder(),color: Colors.blue,)
           ],
         ),
       ),
